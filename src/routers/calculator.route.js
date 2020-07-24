@@ -1,20 +1,19 @@
 const router = require('express').Router()
+const operationsController = require('../controller/operationsController')
 
 router.use((req, res, next) => {
   const firstData = req.query.first
   const secondData = req.query.second
 
   if (!firstData) {
-    return error(res, {
-      status: 400,
-      message: "Missing required parameter 'first'"
+    return res.status(400).json({
+      message: 'Missing required parameter first'
     })
   }
 
   if (!secondData) {
-    return error(res, {
-      status: 400,
-      message: "Missing required parameter 'second"
+    return res.status(400).json({
+      message: 'Missing required parameter second'
     })
   }
 
@@ -22,15 +21,13 @@ router.use((req, res, next) => {
   const second = parseFloat(secondData)
 
   if (isNaN(first)) {
-    return error(res, {
-      status: 400,
+    return res.status(400).json({
       message: "The parameter 'first' is not a number"
     })
   }
 
   if (isNaN(second)) {
-    return error({
-      status: 400,
+    return res.status(400).json({
       message: "The parameter 'second' is not a number"
     })
   }
@@ -40,3 +37,8 @@ router.use((req, res, next) => {
 
   next()
 })
+
+router.get('/add', operationsController.add)
+router.get('/sub', operationsController.sub)
+router.get('/mul', operationsController.mul)
+router.get('/div', operationsController.div)
