@@ -1,12 +1,16 @@
-exports.add = (req, resp) => {
+exports.add = (req, res) => {
+  console.log(`requisicao: ${req}`)
+  const first = Number(req.query.first)
+  const second = Number(req.query.second)
+  const sum = first + second
+  return res.status(200).json(sum)
+}
+exports.sub = (req, res) => {
 
 }
-exports.sub = (req, resp) => {
+exports.mul = (req, res) => {
 
 }
-exports.mul = (req, resp) => {
-
-}
-exports.div = (req, resp) => {
+exports.div = (req, res) => {
 
 }
