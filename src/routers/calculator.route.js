@@ -42,3 +42,5 @@ router.get('/add', operationsController.add)
 router.get('/sub', operationsController.sub)
 router.get('/mul', operationsController.mul)
 router.get('/div', operationsController.div)
+
+module.exports = router
