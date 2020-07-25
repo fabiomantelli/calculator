@@ -1,9 +1,14 @@
-const app = require('express')()
+const express = require('express')
+const cors = require('cors')
 const index = require('./src/routers')
 const calculatorRouter = require('./src/routers/calculator.route')
 
-app.use(index)
-app.use('/calculator', calculatorRouter)
-app.listen(8080)
+const app = express()
 
-exports.app = app
+app.use(express.json())
+app.use(cors())
+
+app.use(index)
+app.use('/calculator/', calculatorRouter)
+
+module.exports = app
